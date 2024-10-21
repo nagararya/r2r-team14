@@ -37,6 +37,8 @@ const int rightMotor = -1;
 
 void setup() {
   Serial.begin(9600);
+
+  // TODO: Add pinMode() for all of the pins once they're finalised
 }
 
 void loop() {
