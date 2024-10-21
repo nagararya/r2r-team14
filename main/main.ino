@@ -6,7 +6,9 @@
 #define MAX_ARGS 16
 
 #define MOVE_COMMAND "move"
+#define ROTATE_COMMAND "rotate"
 #define SENSOR_COMMAND "sensor"
+#define DRIVE_COMMAND "drive"
 
 // Globals and Constants
 
@@ -65,6 +67,12 @@ void loop() {
       } else {
         Serial.println("Invalid Sensor command");
       }
+    }
+    else if (strcmp(args[0], ROTATE_COMMAND) == 0) {
+    
+    }
+    else if (strcmp(args[0], DRIVE_COMMAND) == 0) {
+    
     }
     // If the user provides an invalid command
     else {
