@@ -10,6 +10,25 @@
 
 // Globals and Constants
 
+// Ultrasonic
+const int leftTrig = -1;
+const int leftEcho = -1;
+
+const int forwardTrig = -1;
+const int forwardEcho = -1;
+
+const int rightTrig = -1;
+const int rightEcho = -1;
+
+
+// Servo
+const int clawServo = -1;
+const int pivotServo = -1;
+
+
+// Motors
+const int leftMotor = -1;
+const int rightMotor = -1;
 
 
 // Functions
@@ -57,16 +76,35 @@ void loop() {
 void moveDistance(int distance) {
   if (distance >= 0) {
     Serial.print("Moving forward ");
-    Serial.print(distance);
-    Serial.println(" cm");
   } else {
     Serial.print("Moving backward ");
-    Serial.print(distance);
-    Serial.println(" cm");
   }
+
+  Serial.print(distance);
+  Serial.println(" cm");
 }
 
 void checkUltrasonic() {
-  Serial.println("The ultrasonic is 15 cm away");
+  float leftDistance = findDistance(leftTrig, leftEcho);
+  float forwardDistance = findDistance(forwardTrig, forwardEcho);
+  float rightDistance = findDistance(rightTrig, rightEcho);
+
+  Serial.print("\t\tForward distance: ");
+  Serial.println(forwardDistance);
+
+  Serial.print("Left distance: ");
+  Serial.print(leftDistance);
+  Serial.print("\t\t Right distance: ");
+  Serial.println(rightDistance);
 }
 
+float findDistance(int trigPin, int echoPin) {
+  digitalWrite(trigPin, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(trigPin, LOW);
+
+  float duration = pulseIn(echoPin, HIGH);
+  float distance = duration / 2 * 0.034;
+
+  return distance;
+}
